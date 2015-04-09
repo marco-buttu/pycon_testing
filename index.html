@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Lessons learned about testing and TDD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/ribbon.css">
+    <link rel="stylesheet" href="styles/highlight.css">
+    <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="list">
+    <header class="caption">
+        <h1>Lessons learned about testing and TDD</h1>
+        <p>Marco Buttu, PyCon Italia 6</p>
+    </header>
+    <section class="slide cover" id="Cover"><div>
+        <h2>LESSONS LEARNED ABOUT TESTING AND TDD</h2>
+        <p>
+        <a href="mailto:marco.buttu@gmail.com">Marco Buttu</a> @ 
+        Python Conference Italia 6</p>
+        <img src="pictures/cover.jpg" alt="">
+        <style>
+            #Cover h2 {
+                margin:10px 0 0;
+                color:#FFF;
+                text-align:center;
+                font-size:80px;
+                line-height:1.15em;
+                }
+            #Cover p {
+                margin:40px;
+                text-align:center;
+                color:#FFF;
+                font-style:italic;
+                font-size:21px;
+                }
+                #Cover p a {
+                    color:#990000;
+                    }
+        </style>
+    </div></section>
+  
+    <section class="slide"><div>
+        <h2>Just a Few Years Ago</h2>
+        <ul>
+            <li>The sofware will be in production in about two years</li>
+            <li>We do not need mock objects or simulators, we have the real 
+            hardware</li>
+            <li>We write some high level tests (API, functionals), but rarely 
+            unit tests</li>
+            <li>The TDD is useful (we heard), but we don't have the time</li>
+            <li>Everything is working fine, and our testing strategy is 
+            good enough</li>
+        </ul>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>The Software Goes in Production...</h2>
+        <ul>
+            <li>Changing the code without regression tests is unsafe</li>
+            <li>Without hardware simulators we can only test the code online, 
+            and that means we have to wait for our shift</li>
+            <li>We have bugs to fix and features to add, so we need to 
+            change the code!</li>
+            <li>In that context, the software maintenance is really expensive</li>
+            <li class="next">Trust me, that is a nightmare...</li>
+        </ul>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>A System Without Regression Tests</h2>
+        <ul>
+            <li>We try to make the best from that situation, so before to
+            fix a bug:</li>
+            <ol class="next">
+                <li>we write a high level test that fails, showing the bug</li>
+                <li>we consider the problem solved only when the test passes</li>
+                <li>we keep the test in order to avoid regressions</li>
+            </ol>
+            <li class="next">We do not write unit tests because in that 
+            context it is not suitable</li>
+            <li class="next">We do nightly build</li>
+            <li class="next">So, what about new features? Where do we go 
+            from here?</li>
+        </ul>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>No TDD and more Functional Tests?</h2>
+        <figure>
+            <blockquote>
+            <p>The current fanatical TDD experience leads to a primary focus 
+            on the unit tests, because those are the tests capable of driving 
+            the code design (the original justification for test-first).
+            I don't think that's healthy... 
+            Less emphasis on unit tests, because we're no longer doing 
+            test-first as a design practice, and more emphasis on, yes, slow, 
+            system tests. 
+            </p>
+            </blockquote>
+            <figcaption>David Heinemeier Hansson, creator of Ruby on Rails
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Are functional tests worse than useless?</h2>
+        <figure>
+            <blockquote>
+            <p>Unlike unit tests, the functional tests don't tell you 
+            what is broken or 
+            where to locate the failure in the code base. They just tell you 
+            something is broken. That something could be the test, the browser,
+            or a race condition. There is no way to tell because functional 
+            tests, by definition of being end-to-end, test everything.</p>
+            </blockquote>
+            <figcaption>Chirag Doshi and Rachel Laycock
+            <a href="http://thoughtworks.github.io/p2/issue10/broken-ui-tests/">
+            (ThoughtWorks)</a>
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>A Recent Story: the Airbus A350</h2>
+        <figure>
+            <blockquote>
+                <p>As with any new plane, the early design phases were riddled
+                with uncertainty. Would the materials be light enough and 
+                strong enough? Would the components perform as Airbus desired?
+                Would parts fit together? Would it fly the way simulations 
+                predicted? To produce a working aircraft, Airbus had to 
+                systematically eliminate those risks using a process it calls 
+                a "testing pyramid".
+                </p>
+            </blockquote>
+            <figcaption>Jeff Wise 
+            <a href="http://www.businessweek.com/printer/articles/184073">
+            (BusinessWeek)</a>
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide" id="Pyramid"><div>
+        <h2>The Pyramid</h2>
+        <ol>
+            <li>Acceptance and manual sessions</li>
+            <li>Functional</li>
+            <li>Integration</li>
+            <li>Units</li>
+            <li>...</li>
+        </ol>
+        <img src="pictures/pyramid.svg" alt="Pyramid">
+        <style>
+            #Pyramid h2 {
+                color:#666;
+            }
+            #Pyramid img {
+                margin-top:-490px;
+                margin-left:280px;
+                width: 24em;
+            }
+        </style>
+    </div></section>
+
+    <section class="slide" id="Workflow"><div>
+        <h2>Development Workflow</h2>
+        <img src="pictures/workflow.svg" alt="Workflow">
+        <style>
+            #Workflow h2 {
+                color:#666;
+            }
+            #Workflow img {
+                width: 35em;
+                margin-left:-30px;
+                margin-top:-15px;
+            }
+        </style>
+    </div></section>
+ 
+    <section class="slide"><div>
+        <h2>A User Story</h2>
+        <figure>
+            <blockquote>
+                <p>As an astronomer, I want to interact with the 
+                radiotelescope through a command-line interface.
+                When I execute a setup, I want to know if the setup
+                is actually in progress. I also want to know if the
+                setup is done, and in that case I want to know if the
+                telescope is ready to operate.
+                Eventyally, I want to get the actual and the 
+                commanded setup.
+                </p>
+            </blockquote>
+            <figcaption>Pinco Karl Jansky</figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>User Acceptance Test</h2>
+        <pre>
+            <code class="discos">
+            $ setup KK # Set the K band receiver (wait a bit...)
+            $ commanded_setup 
+            KK
+            $ actual_setup 
+            None
+            $ is_starting
+            True
+            $ actual_setup # Now the setup is done
+            KK
+            $ is_ready
+            True
+            </code>
+        </pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Functional Test</h2>
+        <pre>
+            <code class="python">
+            @pytest.fixture
+            def component():
+                from myframework import services 
+                return services.get_component('mycomponent')
+
+            def test_setup_use_case(component):
+                component.cli('setup KK')
+                assert component.cli('commanded_setup') == 'KK'
+                assert component.cli('actual_setup') == 'None'
+                assert component.cli('is_starting')
+                wait_until(component.is_ready)
+                assert component.cli('is_ready')
+                assert component.cli('actual_setup') == 'KK'
+            </code>
+        </pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Integration Test</h2>
+        <pre>
+            <code class="python">
+            @pytest.fixture
+            def component():
+                from myframework import get_component
+                mycomponent = get_component('mycomponent')
+                mycomponent.setup('KK')
+                return mycomponent
+
+            def test_is_starting(component):
+                assert component.is_starting()
+                wait_until(component.is_ready)
+                assert not component.is_starting()
+            </code>
+        </pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Unit Tests</h2>
+        <pre>
+            <code class="python">
+            @pytest.fixture
+            def component():
+                from components import MyComponent
+                return MyComponent()
+
+            def test_setup_device_position(component):
+                component.setup('KK')
+                expected_pos = component.conf.position()
+                wait_until(component.is_ready)
+                actual_pos = component.get_position()
+                assert math.is_close(actual_pos, expected_pos) # Py3.5
+            </code>
+        </pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Component Implementation</h2>
+        <pre>
+            <code class="python">
+            class MyComponent(object):
+
+                def __init__(self):
+                    self.device = get_component('low_level_device')
+                    self.conf = Configuration()
+
+                def setup(self, setup_code):
+                    # ... At some point:
+                    self.device.setup() # Device startup: power on, etc.
+                    p = self.conf.get_position(setup_code)
+                    self.device.set_position(p)
+            </code>
+            </pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Unit Tests Should Run Offline</h2>
+        <ul>
+            <li>Unit tests should not fail outside the unit of code under 
+            test</li>
+            <li>They should be fast, since we run them
+            continuously when programming</li>
+            <li>So, they should be independent from external 
+            resources</li>
+            <li>They must also test errors, corner cases and conditions 
+            hard to reproduce</li>
+            <li>That means usually unit tests require either simulators 
+            and mockers</li>
+        </ul>
+        <p class="note">Sometimes the external resources are not
+        available during development.</p>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Unit Tests With Mock Objects</h2>
+        <pre>
+            <code class="python">
+            @pytest.fixture
+            def component():
+                from components import MyComponent
+                return MyComponent()
+
+            def test_setup_device_position(component):
+                component.device.set_position = unittest.mock.MagicMock()
+                component.setup('KK')
+                wait_until(component.is_ready)
+                expected = component.conf.position('KK')
+                component.device.set_position.assert_called_with(expected)
+            </code>
+        </pre>
+    </div></section>
+
+    <section class="slide" id="Simulators"><div>
+        <h2>Tests With Simulators</h2>
+        <img src="pictures/simulators.svg" alt="Simulators">
+        <style>
+            #Simulators h2 {
+                color:#666;
+            }
+            #Simulators img {
+                width: 36em;
+                margin-left:-42px;
+                margin-top:-18px;
+            }
+        </style>
+        <ul>
+            <li>We can execute fast and offline both high level and low 
+            level tests</li>
+            <li>All the tests run in the same way in simulation and in 
+            real mode</li>
+            <li>We can verify the external resources API behave as expected</li>
+        </ul>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Lessons Learned</h2>
+        <ul>
+            <li>If you don't want your tests to be useless and harmful, ensure 
+            they fail</li>
+            <li>Before to fix a bug, always write a test that fails, 
+            showing the bug</li>
+            <li>Use integration tests to establish component API contracts</li>
+            <li>Do continuous integration or at least nightly build</li>
+            <li>Test Driven Development ensures the maximum test coverage</li>
+            <li>If the external resources API are stable, prefere simulators
+            over mockers</li>
+            <li>Don't be religious: there is no one approach that suits all 
+            contexts</li>
+        </ul>
+    </div></section>
+ 
+    <div class="progress"><div></div></div>
+    <script src="js/shower.min.js"></script>
+    <!-- Cover pictures from http://hdw.eweb4.com/ -->
+</body>
+</html>
