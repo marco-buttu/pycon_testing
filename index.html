@@ -73,8 +73,7 @@
     <section class="slide"><div>
         <h2>A System Without Regression Tests</h2>
         <ul>
-            <li>We try to make the best from that situation, so before to
-            fix a bug:</li>
+            <li>Before to fix a bug:</li>
             <ol class="next">
                 <li>we write a high level test that fails, showing the bug</li>
                 <li>we consider the problem solved only when the test passes</li>
@@ -147,11 +146,11 @@
     <section class="slide" id="Pyramid"><div>
         <h2>The Pyramid</h2>
         <ol>
-            <li>Acceptance and manual sessions</li>
-            <li>Functional</li>
-            <li>Integration</li>
-            <li>Units</li>
-            <li>...</li>
+            <li>Cover your code mostly with unit tests</li>
+            <li>Verify the APIs behave as expected</li>
+            <li>Ensure the user expectations</li>
+            <li>Reduce manual sessions</li>
+            <li>Distrust DHH: do TDD</li>
         </ol>
         <img src="pictures/pyramid.svg" alt="Pyramid">
         <style>
@@ -195,7 +194,7 @@
                 commanded setup.
                 </p>
             </blockquote>
-            <figcaption>Pinco Karl Jansky</figcaption>
+            <figcaption>Pinco Pallino Jansky</figcaption>
         </figure>
     </div></section>
 
@@ -204,13 +203,13 @@
         <pre>
             <code class="discos">
             $ setup KK # Set the K band receiver (wait a bit...)
+            $ is_starting
+            True
             $ commanded_setup 
             KK
             $ actual_setup 
             None
-            $ is_starting
-            True
-            $ actual_setup # Now the setup is done
+            $ actual_setup # Once the setup is completed
             KK
             $ is_ready
             True
@@ -227,14 +226,14 @@
                 from myframework import services 
                 return services.get_component('mycomponent')
 
-            def test_setup_use_case(component):
+            def test_setup(component):
                 component.cli('setup KK')
+                assert component.cli('is_starting')
                 assert component.cli('commanded_setup') == 'KK'
                 assert component.cli('actual_setup') == 'None'
-                assert component.cli('is_starting')
                 wait_until(component.is_ready)
-                assert component.cli('is_ready')
                 assert component.cli('actual_setup') == 'KK'
+                assert component.cli('is_ready')
             </code>
         </pre>
     </div></section>
@@ -267,12 +266,12 @@
                 from components import MyComponent
                 return MyComponent()
 
-            def test_setup_device_position(component):
+            def test_setup_set_device_position(component):
                 component.setup('KK')
                 expected_pos = component.conf.position()
                 wait_until(component.is_ready)
                 actual_pos = component.get_position()
-                assert math.is_close(actual_pos, expected_pos) # Py3.5
+                assert math.isclose(actual_pos, expected_pos) # Py3.5
             </code>
         </pre>
     </div></section>
@@ -323,7 +322,7 @@
                 from components import MyComponent
                 return MyComponent()
 
-            def test_setup_device_position(component):
+            def test_setup_set_device_position(component):
                 component.device.set_position = unittest.mock.MagicMock()
                 component.setup('KK')
                 wait_until(component.is_ready)
@@ -351,7 +350,7 @@
             level tests</li>
             <li>All the tests run in the same way in simulation and in 
             real mode</li>
-            <li>We can verify the external resources API behave as expected</li>
+            <li>We can verify the external resources APIs behave as expected</li>
         </ul>
     </div></section>
 
@@ -363,10 +362,10 @@
             <li>Before to fix a bug, always write a test that fails, 
             showing the bug</li>
             <li>Use integration tests to establish component API contracts</li>
-            <li>Do continuous integration or at least nightly build</li>
             <li>Test Driven Development ensures the maximum test coverage</li>
             <li>If the external resources API are stable, prefere simulators
             over mockers</li>
+            <li>Clean everything and deploy from scratch before a CI cycle</li>
             <li>Don't be religious: there is no one approach that suits all 
             contexts</li>
         </ul>
