@@ -13,3 +13,7 @@ tests, in order to highlight the differences between functional, integration
 and unit tests, the best practices and the lessons learned by the author
 during the development of `Sardinia Radio Telescope 
 <https://www.youtube.com/watch?v=zCL_tSMqsRg>`_ control software.
+
+Talk @ `Python Conference Italia 6
+<http://www.pycon.it/it/>`_. The slieds are available `online
+<http://marco-buttu.github.io/pycon_testing/>`_.
