@@ -304,7 +304,7 @@
             continuously when programming</li>
             <li>So, they should be independent from external 
             resources</li>
-            <li>They must also test errors, corner cases and conditions 
+            <li>They must also test errors and other conditions 
             hard to reproduce</li>
             <li>That means usually unit tests require either simulators 
             and mockers</li>
@@ -350,7 +350,7 @@
             level tests</li>
             <li>All the tests run in the same way in simulation and in 
             real mode</li>
-            <li>We can verify the external resources APIs behave as expected</li>
+            <li>We can verify the <i>real world</i> APIs behave as expected</li>
         </ul>
     </div></section>
 
@@ -362,10 +362,11 @@
             <li>Before to fix a bug, always write a test that fails, 
             showing the bug</li>
             <li>Use integration tests to establish component API contracts</li>
-            <li>Test Driven Development ensures the maximum test coverage</li>
+            <li>Unit tests must be fast and selective, with ideally one 
+            assert per test</li>
             <li>If the external resources API are stable, prefere simulators
             over mockers</li>
-            <li>Keep it simple: ideally one assert per unit test</li>
+            <li>Test Driven Development ensures the maximum test coverage</li>
             <li>Don't be religious: there is no one approach that suits all 
             contexts</li>
         </ul>
