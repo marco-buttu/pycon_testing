@@ -289,7 +289,6 @@
 
                 def setup(self, setup_code):
                     # ... At some point:
-                    self.device.setup() # Device startup: power on, etc.
                     p = self.conf.get_position(setup_code)
                     self.device.set_position(p)
             </code>
@@ -321,11 +320,12 @@
             @pytest.fixture
             def component():
                 from components import MyComponent
-                return MyComponent()
-
-            def test_setup_set_device_position(component):
+                component = MyComponent()
                 component.device.set_position = unittest.mock.MagicMock()
                 component.setup('KK')
+                return component
+
+            def test_setup_set_device_position(component):
                 wait_until(component.is_ready)
                 expected = component.conf.position('KK')
                 component.device.set_position.assert_called_with(expected)
@@ -349,6 +349,7 @@
         <ul>
             <li>We can execute fast and offline both high level and low 
             level tests</li>
+            <li>There is no need of extra code (mock objects) that complicate the test</li>
             <li>All tests run in the same way in simulation and in 
             real mode</li>
             <li>We can verify that the <i>real world</i> APIs behave as expected</li>
