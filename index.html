@@ -14,13 +14,13 @@
 <body class="list">
     <header class="caption">
         <h1>Lessons learned about testing and TDD</h1>
-        <p>Marco Buttu, PyCon Italia 6</p>
+        <p>Marco Buttu, EuroPython 2015</p>
     </header>
     <section class="slide cover" id="Cover"><div>
         <h2>LESSONS LEARNED ABOUT TESTING AND TDD</h2>
         <p>
         <a href="mailto:marco.buttu@gmail.com">Marco Buttu</a> @ 
-        Python Conference Italia 6</p>
+        EuroPython 2015</p>
         <img src="pictures/cover.jpg" alt="">
         <style>
             #Cover h2 {
@@ -29,20 +29,20 @@
                 text-align:center;
                 font-size:80px;
                 line-height:1.15em;
-                }
+            }
             #Cover p {
                 margin:40px;
                 text-align:center;
                 color:#FFF;
                 font-style:italic;
                 font-size:21px;
-                }
-                #Cover p a {
-                    color:#990000;
-                    }
+            }
+            #Cover p a {
+                color:#990000;
+            }
         </style>
     </div></section>
-  
+
     <section class="slide"><div>
         <h2>Just a Few Years Ago</h2>
         <ul>
@@ -86,42 +86,6 @@
             <li>What about new features? Where do we go 
             from here?</li>
         </ul>
-    </div></section>
-
-    <section class="slide"><div>
-        <h2>No TDD and more Functional Tests?</h2>
-        <figure>
-            <blockquote>
-            <p>The current fanatical TDD experience leads to a primary focus 
-            on the unit tests, because those are the tests capable of driving 
-            the code design (the original justification for test-first).
-            I don't think that's healthy... 
-            Less emphasis on unit tests, because we're no longer doing 
-            test-first as a design practice, and more emphasis on, yes, slow, 
-            system tests. 
-            </p>
-            </blockquote>
-            <figcaption>David Heinemeier Hansson, creator of Ruby on Rails
-            </figcaption>
-        </figure>
-    </div></section>
-
-    <section class="slide"><div>
-        <h2>Are functional tests worse than useless?</h2>
-        <figure>
-            <blockquote>
-            <p>Unlike unit tests, the functional tests don't tell you 
-            what is broken or 
-            where to locate the failure in the code base. They just tell you 
-            something is broken. That something could be the test, the browser,
-            or a race condition. There is no way to tell because functional 
-            tests, by definition of being end-to-end, test everything.</p>
-            </blockquote>
-            <figcaption>Chirag Doshi and Rachel Laycock
-            <a href="http://thoughtworks.github.io/p2/issue10/broken-ui-tests/">
-            (ThoughtWorks)</a>
-            </figcaption>
-        </figure>
     </div></section>
 
     <section class="slide"><div>
@@ -357,6 +321,42 @@
     </div></section>
 
     <section class="slide"><div>
+        <h2>No TDD and more Functional Tests?</h2>
+        <figure>
+            <blockquote>
+            <p>The current fanatical TDD experience leads to a primary focus 
+            on the unit tests, because those are the tests capable of driving 
+            the code design (the original justification for test-first).
+            I don't think that's healthy... 
+            Less emphasis on unit tests, because we're no longer doing 
+            test-first as a design practice, and more emphasis on, yes, slow, 
+            system tests. 
+            </p>
+            </blockquote>
+            <figcaption>David Heinemeier Hansson, creator of Ruby on Rails
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Are functional tests worse than useless?</h2>
+        <figure>
+            <blockquote>
+            <p>Unlike unit tests, the functional tests don't tell you 
+            what is broken or 
+            where to locate the failure in the code base. They just tell you 
+            something is broken. That something could be the test, the browser,
+            or a race condition. There is no way to tell because functional 
+            tests, by definition of being end-to-end, test everything.</p>
+            </blockquote>
+            <figcaption>Chirag Doshi and Rachel Laycock
+            <a href="http://thoughtworks.github.io/p2/issue10/broken-ui-tests/">
+            (ThoughtWorks)</a>
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide"><div>
         <h2>Lessons Learned</h2>
         <ul>
             <li>If you don't want your tests to be useless and harmful, ensure 
@@ -373,7 +373,30 @@
             contexts</li>
         </ul>
     </div></section>
- 
+
+    <section class="slide cover" id="Video"><div>
+       <h2>The Sardinia Radio Telescope</h2>
+       <video controls width="604" height="497" poster="pictures/srt.jpg" >
+           <source src="video/SRT.mp4" type="video/mp4" />
+       </video>
+        <img src="pictures/stars.jpg" alt="">
+        <style>
+            #Video video {
+                margin-top:120px;
+                margin-left:185px;
+                z-index: +1;
+            }
+            #Video h2 {
+                text-align:center;
+                margin-top: -25px;
+                color:#E0E0E0;
+                text-align:center;
+                font-size:70px;
+                line-height:1em;
+            }
+        </style>
+    </div></section>
+
     <div class="progress"><div></div></div>
     <script src="js/shower.min.js"></script>
     <!-- Cover pictures from http://hdw.eweb4.com/ -->
