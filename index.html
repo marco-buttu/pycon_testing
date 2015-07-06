@@ -20,7 +20,7 @@
         <h2>LESSONS LEARNED ABOUT TESTING AND TDD</h2>
         <p>
         <a href="mailto:marco.buttu@gmail.com">Marco Buttu</a> @ 
-        EuroPython 2015</p>
+        EuroPython 2015, Bilbao</p>
         <img src="pictures/cover.jpg" alt="">
         <style>
             #Cover h2 {
@@ -47,26 +47,29 @@
         <h2>Just a Few Years Ago</h2>
         <ul>
             <li>The sofware will be in production in about two years</li>
-            <li>We do not need mock objects or simulators, we have the real 
-            hardware</li>
-            <li>We write some high level tests (API, functionals), but rarely 
+            <li>To perform our tests, we did not need mock objects or 
+            simulators, because we had the real hardware</li>
+            <li>We were used to carry out manual tests: just sometimes
+            we wrote automated high level tests, and basically we never wrote
             unit tests</li>
-            <li>The TDD is useful (we heard), but we don't have the time</li>
-            <li>Everything is working fine, and our testing strategy is 
-            good enough</li>
+            <li>We saw that everything was working fine, so we believed
+            that our testing strategy was good enough ...</li>
         </ul>
     </div></section>
 
     <section class="slide"><div>
         <h2>The Software Goes in Production...</h2>
         <ul>
-            <li>Changing the code without regression tests is unsafe</li>
-            <li>Without hardware simulators we can only test the code online, 
-            and that means we have to wait for our shift</li>
-            <li>We have to fix bugs and to add features, so we need to 
-            change the code!</li>
-            <li>In this context, the software maintenance is really expensive</li>
-            <li>Trust me, that's a nightmare...</li>
+            <li>We have to fix bugs and add features, so we need to 
+            change the code...</li>
+            <li>But we realize that changing the code without regression tests 
+            is unsafe</li>
+            <li>And without hardware simulators we can only test the code online
+            </li>
+            <li>In this context, the software maintenance is a nightmare</li>
+            <li>We try to work out this situation writing <em>hardware 
+            simulators</em>, <em>regression tests</em>, and
+            changing our <em>workflow</em></li>
         </ul>
     </div></section>
 
@@ -86,48 +89,6 @@
             <li>What about new features? Where do we go 
             from here?</li>
         </ul>
-    </div></section>
-
-    <section class="slide"><div>
-        <h2>A Recent Story: the Airbus A350</h2>
-        <figure>
-            <blockquote>
-                <p>As with any new plane, the early design phases were riddled
-                with uncertainty. Would the materials be light enough and 
-                strong enough? Would the components perform as Airbus desired?
-                Would parts fit together? Would it fly the way simulations 
-                predicted? To produce a working aircraft, Airbus had to 
-                systematically eliminate those risks using a process it calls 
-                a "testing pyramid".
-                </p>
-            </blockquote>
-            <figcaption>Jeff Wise 
-            <a href="http://www.businessweek.com/printer/articles/184073">
-            (BusinessWeek)</a>
-            </figcaption>
-        </figure>
-    </div></section>
-
-    <section class="slide" id="Pyramid"><div>
-        <h2>The Pyramid</h2>
-        <ol>
-            <li>Cover your code mostly with unit tests</li>
-            <li>Verify the APIs behave as expected</li>
-            <li>Ensure the user expectations</li>
-            <li>Reduce manual sessions</li>
-            <li>Distrust DHH: do TDD</li>
-        </ol>
-        <img src="pictures/pyramid.svg" alt="Pyramid">
-        <style>
-            #Pyramid h2 {
-                color:#666;
-            }
-            #Pyramid img {
-                margin-top:-490px;
-                margin-left:280px;
-                width: 24em;
-            }
-        </style>
     </div></section>
 
     <section class="slide" id="Workflow"><div>
@@ -199,6 +160,19 @@
             </code>
         </pre>
     </div></section>
+
+    <section class="slide" id="FullFlow"><div>
+        <h2>Functional Test: User Point Of View</h2>
+        <img src="pictures/user_typing.svg" alt="User typing">
+        <style>
+            #FullFlow img {
+                margin-top:60px;
+                margin-left:-60px;
+                width: 35em;
+            }
+        </style>
+    </div></section>
+
 
     <section class="slide"><div>
         <h2>Functional Test</h2>
@@ -331,10 +305,12 @@
         <ul>
             <li>We can execute fast and offline both high level and low 
             level tests</li>
-            <li>There is no need of extra code (mock objects) that complicate the test</li>
+            <li>There is no need of extra code (mock objects) that complicate
+            the test</li>
             <li>All tests run in the same way in simulation and in 
             real mode</li>
-            <li>We can verify that the <i>real world</i> APIs behave as expected</li>
+            <li>We can verify that the <i>real world</i> APIs behave as 
+            expected</li>
         </ul>
     </div></section>
 
@@ -373,6 +349,49 @@
             </figcaption>
         </figure>
     </div></section>
+
+    <section class="slide"><div>
+        <h2>A Recent Story: the Airbus A350</h2>
+        <figure>
+            <blockquote>
+                <p>As with any new plane, the early design phases were riddled
+                with uncertainty. Would the materials be light enough and 
+                strong enough? Would the components perform as Airbus desired?
+                Would parts fit together? Would it fly the way simulations 
+                predicted? To produce a working aircraft, Airbus had to 
+                systematically eliminate those risks using a process it calls 
+                a "testing pyramid".
+                </p>
+            </blockquote>
+            <figcaption>Jeff Wise 
+            <a href="http://www.businessweek.com/printer/articles/184073">
+            (BusinessWeek)</a>
+            </figcaption>
+        </figure>
+    </div></section>
+
+    <section class="slide" id="Pyramid"><div>
+        <h2>The Pyramid</h2>
+        <ol>
+            <li>Cover your code mostly with unit tests</li>
+            <li>Verify the APIs behave as expected</li>
+            <li>Ensure the user expectations</li>
+            <li>Reduce manual sessions</li>
+            <li>Distrust DHH: do TDD</li>
+        </ol>
+        <img src="pictures/pyramid.svg" alt="Pyramid">
+        <style>
+            #Pyramid h2 {
+                color:#666;
+            }
+            #Pyramid img {
+                margin-top:-490px;
+                margin-left:280px;
+                width: 24em;
+            }
+        </style>
+    </div></section>
+
 
     <section class="slide"><div>
         <h2>Lessons Learned</h2>
