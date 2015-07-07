@@ -173,7 +173,6 @@
         </style>
     </div></section>
 
-
     <section class="slide"><div>
         <h2>Functional Test</h2>
         <pre>
@@ -185,14 +184,26 @@
 
             def test_setup(component):
                 component.cli('setup KK')
-                assert component.cli('is_starting')
+                assert component.cli('is_starting') == 'True'
                 assert component.cli('commanded_setup') == 'KK'
                 assert component.cli('actual_setup') == 'None'
                 wait_until(component.is_ready)
                 assert component.cli('actual_setup') == 'KK'
-                assert component.cli('is_ready')
+                assert component.cli('is_ready') == 'True'
             </code>
         </pre>
+    </div></section>
+
+    <section class="slide" id="IntegrationPic"><div>
+        <h2>Integration Test: System Point Of View</h2>
+        <img src="pictures/api.svg" alt="Integration test">
+        <style>
+            #IntegrationPic img {
+                margin-top:10px;
+                margin-left:-60px;
+                width: 35em;
+            }
+        </style>
     </div></section>
 
     <section class="slide"><div>
