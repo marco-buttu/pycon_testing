@@ -180,7 +180,7 @@
             @pytest.fixture
             def component():
                 from myframework import services 
-                return services.get_component('mycomponent')
+                return services.get_component('component_name')
 
             def test_setup(component):
                 component.cli('setup KK')
@@ -213,7 +213,7 @@
             @pytest.fixture
             def component():
                 from myframework import get_component
-                mycomponent = get_component('mycomponent')
+                mycomponent = get_component('component_name')
                 mycomponent.setup('KK')
                 return mycomponent
 
@@ -231,11 +231,12 @@
             <code class="python">
             @pytest.fixture
             def component():
-                from components import MyComponent
-                return MyComponent()
+                from myframework import get_component
+                mycomponent = get_component('component_name')
+                mycomponent.setup('KK')
+                return mycomponent
 
             def test_setup_set_device_position(component):
-                component.setup('KK')
                 expected_pos = component.conf.position()
                 wait_until(component.is_ready)
                 actual_pos = component.get_position()
@@ -286,10 +287,10 @@
             <code class="python">
             @pytest.fixture
             def component():
-                from components import MyComponent
-                component = MyComponent()
-                component.device.set_position = unittest.mock.MagicMock()
-                component.setup('KK')
+                from myframework import get_component
+                mycomponent = get_component('component_name')
+                mycomponent.device.set_position = unittest.mock.MagicMock()
+                mycomponent.setup('KK')
                 return component
 
             def test_setup_set_device_position(component):
@@ -316,7 +317,7 @@
         <ul>
             <li>We can execute fast and offline both high level and low 
             level tests</li>
-            <li>There is no need of extra code (mock objects) that complicate
+            <li>There is no need of extra code (mock objects) that complicates
             the test</li>
             <li>All tests run in the same way in simulation and in 
             real mode</li>
