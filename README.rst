@@ -15,5 +15,5 @@ during the development of the `Sardinia Radio Telescope
 <https://www.youtube.com/watch?v=zCL_tSMqsRg>`_ control software.
 
 Talk @ `EuroPython 2015, Bilbao
-https://ep2015.europython.eu/>`_. The slides are available `online
+<https://ep2015.europython.eu/>`_. The slides are available `online
 <http://marco-buttu.github.io/pycon_testing/>`_.
