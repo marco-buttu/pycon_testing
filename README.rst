@@ -14,6 +14,6 @@ and unit tests, the best practices, and the lessons learned by the author
 during the development of the `Sardinia Radio Telescope 
 <https://www.youtube.com/watch?v=zCL_tSMqsRg>`_ control software.
 
-Talk @ `Python Conference Italia 6
-<http://www.pycon.it/>`_. The slides are available `online
+Talk @ `EuroPython 2015, Bilbao
+https://ep2015.europython.eu/>`_. The slides are available `online
 <http://marco-buttu.github.io/pycon_testing/>`_.

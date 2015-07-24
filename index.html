@@ -49,7 +49,7 @@
             <li>The sofware will be in production in about two years</li>
             <li>To perform our tests, we did not need mock objects or 
             simulators, because we had the real hardware</li>
-            <li>We were used to carry out manual tests: just sometimes
+            <li>We used to carry out manual tests: just sometimes
             we wrote automated high level tests, and basically we never wrote
             unit tests</li>
             <li>We saw that everything was working fine, so we believed
@@ -153,10 +153,10 @@
             KK
             $ actual_setup 
             None
-            $ actual_setup # Once the setup is completed
-            KK
-            $ is_ready
+            $ is_ready # At some point the setup is completed
             True
+            $ actual_setup 
+            KK
             </code>
         </pre>
     </div></section>
@@ -188,8 +188,8 @@
                 assert component.cli('commanded_setup') == 'KK'
                 assert component.cli('actual_setup') == 'None'
                 wait_until(component.is_ready)
-                assert component.cli('actual_setup') == 'KK'
                 assert component.cli('is_ready') == 'True'
+                assert component.cli('actual_setup') == 'KK'
             </code>
         </pre>
     </div></section>
